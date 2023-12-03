@@ -1,0 +1,46 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - 'prometheus'
+server:
+  address: 0.0.0.0
+  port: 8081
+logging:
+  level:
+    #root: DEBUG
+    #org.springframework.data.*.*: trace
+    #org.springframework.cache.*: trace
+    web: INFO
+    org:
+      neo4j: DEBUG
+
+
+  #spring:
+ # data:
+  #  neo4j:
+  #    database: my-database
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Faisel-abd/microservices-training-config-server-perf
+  neo4j:
+    uri: ${NEO4J_URI}
+    authentication:
+      username: neo4j
+      password: ${NEO4J_PASSWORD}
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+#Redis Config
+  cache:
+    type: redis
+  redis:
+    host: ${SPRING_REDIS_HOST}
+    port: ${SPRING_REDIS_PORT}
